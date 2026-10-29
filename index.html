@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123c56"><title>منظومة توصيف المقررات والمواءمة الأكاديمية</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div class="brand-mark">ع</div><div class="brand"><h1>منظومة توصيف المقررات والمواءمة الأكاديمية</h1><p>كلية علوم الرياضة – جامعة مدينة السادات</p></div><div class="top-actions"><span id="modeBadge" class="badge">وضع تجريبي</span><button id="logoutBtn" class="btn btn-outline hidden">تسجيل الخروج</button></div></header>
+<main class="shell">
+<section id="loginView" class="login-card"><div class="login-symbol">⚙</div><h2>تسجيل الدخول</h2><p class="muted">الدخول مخصص للمستخدمين المسجلين. صلاحيات إدارة البيانات الكاملة متاحة لحساب المسؤول فقط.</p><form id="loginForm"><label>البريد الإلكتروني<input id="email" type="email" required autocomplete="username" placeholder="admin@example.com"></label><label>كلمة المرور<input id="password" type="password" required autocomplete="current-password" placeholder="••••••••"></label><button class="btn btn-primary full" type="submit">دخول إلى المنظومة</button><p id="loginMessage" class="message" aria-live="polite"></p></form><div id="demoNotice" class="notice">هذه نسخة تجريبية محلية. لتفعيل الحسابات وقاعدة البيانات على الإنترنت، أضف إعدادات Supabase في ملف <code>cloud-config.js</code>.</div></section>
+<section id="appView" class="hidden">
+<div class="welcome-row"><div><h2 id="welcomeTitle">لوحة التحكم</h2><p class="muted">إدارة بيانات البرنامج والمقررات ونواتج التعلم ومصفوفات الربط من مكان واحد.</p></div><div id="roleLabel" class="role-chip">مسؤول النظام</div></div>
+<div class="stats-grid"><div class="stat"><span>إجمالي السجلات</span><strong id="totalCount">0</strong></div><div class="stat"><span>المقررات</span><strong id="coursesCount">0</strong></div><div class="stat"><span>نواتج تعلم البرنامج</span><strong id="outcomesCount">0</strong></div><div class="stat"><span>مصفوفات الربط</span><strong id="mappingsCount">0</strong></div></div>
+<div class="workspace"><aside class="sidebar"><h3>أقسام البيانات</h3><nav id="categoryNav"></nav><div class="side-note"><strong>صلاحيات المسؤول</strong><p>إضافة وتعديل وحذف السجلات، وإدارة جميع أقسام البيانات المتاحة.</p></div></aside>
+<section class="content-panel"><div class="panel-head"><div><h2 id="sectionTitle">المقررات الدراسية</h2><p id="sectionDesc" class="muted">إدارة بيانات القسم المحدد.</p></div><button id="addBtn" class="btn btn-primary">＋ إضافة سجل</button></div><div class="toolbar"><input id="searchInput" type="search" placeholder="ابحث بالاسم أو الكود أو الوصف..."><button id="refreshBtn" class="btn btn-outline">تحديث</button></div><div id="recordsList" class="records-list"></div><div id="emptyState" class="empty hidden"><div>⌕</div><h3>لا توجد سجلات بعد</h3><p>ابدأ بإضافة سجل جديد لهذا القسم.</p></div><p id="sectionMessage" class="message" aria-live="polite"></p></section></div>
+<div class="footer-note">يجب مراجعة مخرجات الذكاء الاصطناعي والمصفوفات علميًا قبل اعتمادها رسميًا.</div>
+</section>
+</main>
+<dialog id="recordDialog" class="record-dialog"><form id="recordForm" method="dialog"><div class="dialog-head"><div><h2 id="dialogTitle">إضافة سجل</h2><p class="muted">أدخل البيانات المطلوبة، ويمكن حفظ التفاصيل الإضافية بصيغة JSON.</p></div><button type="button" id="closeDialog" class="close-btn" aria-label="إغلاق">×</button></div><label>الاسم / العنوان<input id="recordTitle" required maxlength="240" placeholder="اسم المقرر أو الناتج أو المعيار"></label><label>الكود (اختياري)<input id="recordCode" maxlength="80" placeholder="مثل A1 أو KIN101"></label><label>الوصف المختصر<textarea id="recordDescription" rows="3" placeholder="وصف أو نص الناتج أو تفاصيل السجل"></textarea></label><label>بيانات إضافية (JSON)<textarea id="recordExtra" rows="7" dir="ltr" spellcheck="false">{}</textarea></label><p id="formError" class="error-text"></p><div class="dialog-actions"><button type="button" id="cancelDialog" class="btn btn-outline">إلغاء</button><button type="submit" class="btn btn-primary">حفظ البيانات</button></div></form></dialog>
+<footer class="page-footer">© كلية علوم الرياضة – جامعة مدينة السادات</footer>
+<script src="cloud-config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script>
+</body></html>
