@@ -77,8 +77,8 @@
     if(roleError||!role||role.role!=='admin'){await supabase.auth.signOut();throw new Error('هذا الحساب غير مسجل كمسؤول. اطلب من مدير قاعدة البيانات منحه دور admin.');}
     isAdmin=true; enterApp(false);
   }
-  function enterApp(demo){$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('logoutBtn').classList.remove('hidden');$('roleLabel').textContent=demo?'مسؤول تجريبي — بيانات محلية':'مسؤول النظام';$('modeBadge').textContent=demo?'وضع تجريبي محلي':'متصل بقاعدة البيانات';$('demoNotice').classList.toggle('hidden',cloudMode);render();}
-  async function logout(){if(cloudMode&&supabase)await supabase.auth.signOut();user=null;isAdmin=false;$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('logoutBtn').classList.add('hidden');$('password').value='';}
+  function enterApp(demo){document.body.dataset.role='admin';document.dispatchEvent(new Event('rolechange'));$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('logoutBtn').classList.remove('hidden');$('roleLabel').textContent=demo?'مسؤول تجريبي — بيانات محلية':'مسؤول النظام';$('modeBadge').textContent=demo?'وضع تجريبي محلي':'متصل بقاعدة البيانات';$('demoNotice').classList.toggle('hidden',cloudMode);render();}
+  async function logout(){if(cloudMode&&supabase)await supabase.auth.signOut();user=null;isAdmin=false;delete document.body.dataset.role;document.dispatchEvent(new Event('rolechange'));$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('logoutBtn').classList.add('hidden');$('password').value='';}
   function init(){
     const url=window.COURSE_APP_SUPABASE_URL, key=window.COURSE_APP_SUPABASE_KEY;
     if(url&&key&&window.supabase){try{supabase=window.supabase.createClient(url,key);cloudMode=true;$('modeBadge').textContent='قاعدة بيانات سحابية';$('demoNotice').classList.add('hidden');}catch(e){console.error(e);}}
